@@ -1,0 +1,7 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+groups_stage:
+  name: "groups stage"
+
+final_stage:
+  name: "second stage"

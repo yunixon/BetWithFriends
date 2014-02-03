@@ -1,0 +1,36 @@
+<h1>Standings for <%= @group.name %></h1>
+
+
+<table border="1">
+	<thead>
+		<tr>
+			<th>Equipe</th>
+			<th>Matches Played</th>
+			<th>Won</th>
+			<th>Draw</th>
+			<th>Lost</th>
+			<th>Goals for</th>
+			<th>Goals against</th>
+			<th>Points</th>
+		</tr>
+	</thead>
+	<tbody>
+	<% @standings.each do |standing| %>
+    <tr>
+    	<td><%= link_to standing.team.name, standing.team %></td>
+    	<td><%= standing.played %></td>
+    	<td><%= standing.won %></td>
+    	<td><%= standing.draw %></td>
+    	<td><%= standing.lost %></td>
+    	<td><%= standing.goals_for %></td>
+    	<td><%= standing.goals_against %></td>
+    	<td><%= standing.points %></td>
+    </tr>
+	<% end %>
+	</tbody>
+</table>
+
+<br/>
+
+<%= link_to 'Back', stage_group_path(params[:stage_id], @group.id) %> |
+<%= link_to 'Update', stage_group_standings_path(params[:stage_id], @group.id), method: "put" %>

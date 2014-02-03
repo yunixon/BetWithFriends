@@ -1,0 +1,6 @@
+<h1>New group</h1>
+
+<%= form_for(@group, :url => stage_groups_path(@group.stage_id)) do |f| %>
+<%= render :partial => "groups/form", :locals=>{:f=>f, :group=>@group} %>
+<% end %>
+

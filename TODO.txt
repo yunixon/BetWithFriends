@@ -1,0 +1,9 @@
+Saisir un pari
+
+Mettre des méthodes / objets en commun (ex : récupérer un group ou un match) pour ne pas dupliquer du code
+
+Authentifier un joueur en mode stateless
+calculer/afficher le classement d'un joueur
+calculer/afficher le classement d'une équipe
+Rendre les urls plus SEO (/phase_de_groupes/groupe_A, /deuxieme_phase/huitieme_de_finale/49)
+

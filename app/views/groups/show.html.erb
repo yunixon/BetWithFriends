@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @group.name %>
+</p>
+
+<p>
+  <strong>Stage:</strong>
+  <%= @group.stage_id %>
+</p>
+
+<p><%= link_to 'teams',  stage_group_teams_path(@group.stage_id, @group.id) %></p>
+<p><%= link_to 'matches',  stage_group_matches_path(@group.stage_id, @group.id) %></p>
+<p><%= link_to 'standings',  stage_group_standings_path(@group.stage_id, @group.id) %></p>
+
+<%= link_to 'Edit', edit_stage_group_path(@group.stage_id, @group) %> |
+<%= link_to 'Destroy', stage_group_path, method: :delete, data: { confirm: 'Are you sure?' } %> |
+<%= link_to 'Back', stage_path(@group.stage_id) %>

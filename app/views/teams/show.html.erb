@@ -1,0 +1,13 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @team.name %>
+</p>
+<p><%= link_to 'Les matches', team_matches_path(@team.id) %></p>
+
+
+<%= link_to 'Edit', edit_team_path(@team.id) %> |
+<%= link_to 'Destroy', team_path, method: :delete, data: { confirm: 'Are you sure?' } %> |
+<%= link_to 'Back', teams_path %>
+

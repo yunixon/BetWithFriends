@@ -1,0 +1,27 @@
+<h1>Matches for <%= @team.name %></h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>date</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @matches.each do |match| %>
+      <tr>
+        <td><%= match.date %></td>
+        <td><%= match.team_a_id %></td>
+        <td><%= match.team_b_id %></td>
+        <td></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Back', @team %>

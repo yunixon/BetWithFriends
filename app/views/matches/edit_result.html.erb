@@ -1,0 +1,50 @@
+<h1>Edit result for match #<%= @match.id %></h1>
+
+<%= form_for(@match.result, :url => result_stage_group_match_path(params[:stage_id], @match.group_id, @match.id)) do |f| %>
+
+<% if @match.result.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@match.result.errors.count, "error") %> prohibited this result from being saved:</h2>
+
+    <ul>
+    <% @match.result.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<div class="field">
+  <%= f.label :date %><br>
+  <%= @match.date %>
+</div>
+<div class="field">
+  Group : <%= @match.group.name %> 
+</div>
+<table>
+  <tr>
+    <td><%= @match.team_a.name %></td>
+    <td>vs</td>
+    <td><%= @match.team_b.name %></td>
+  </tr>
+  <tr>
+    <td><%= f.number_field :score_team_a %></td>
+    <td></td>
+    <td><%= f.number_field :score_team_b %></td>
+  </tr>
+</table>
+
+<br/>
+<div class="field">
+  <%= f.label :played %> : <%= f.check_box :played %>
+</div>
+
+
+<br/>
+<div class="actions">
+  <%= f.submit %>
+</div>
+
+<% end %>
+
+<%= link_to 'Back', stage_group_match_path(params[:stage_id], @match.group_id, @match.id) %>

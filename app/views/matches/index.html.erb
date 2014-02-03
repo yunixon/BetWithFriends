@@ -1,0 +1,10 @@
+<h1>Listing matches for group <%= @group.name %></h1>
+
+<% @matches.each do |match| %>
+<p><%= link_to match.id, stage_group_match_path(params[:stage_id], params[:group_id], match.id) %></p>
+<% end %>
+
+<br/>
+
+<%= link_to 'New Match', new_stage_group_match_path %> |
+<%= link_to 'Back', stage_group_path(params[:stage_id], params[:group_id]) %>

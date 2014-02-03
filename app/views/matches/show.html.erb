@@ -1,0 +1,28 @@
+<h1>Match <%= @match.id %></h1>
+
+<p>date : <%= @match.date %></p>
+<p>group : <%= @match.group.name %></p>
+
+<table>
+	<tr>
+		<td><%= @match.team_a.name %></td>
+		<td>vs</td>
+		<td><%= @match.team_b.name %></td>
+	</tr>
+	<% if @match.result.played %>
+	<tr>
+		<td><%= @match.result.score_team_a %></td>
+		<td></td>
+		<td><%= @match.result.score_team_a %></td>
+	</tr>
+	<% end %>
+</table>
+
+<br/>
+
+<%= link_to 'Edit', edit_stage_group_match_path(params[:stage_id], @match.group.id, @match.id) %> |
+<% if @match.result.played %>
+<%= link_to 'Result', result_stage_group_match_path(params[:stage_id], @match.group.id, @match.id) %> |
+<% end %>
+<%= link_to 'Edit result', result_edit_stage_group_match_path(params[:stage_id], @match.group.id, @match.id) %> |
+<%= link_to 'Back', stage_group_matches_path(params[:stage_id], @match.group.id) %>

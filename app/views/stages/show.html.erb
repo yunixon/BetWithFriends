@@ -1,0 +1,12 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @stage.name %>
+</p>
+
+<p><%= link_to 'Groups', stage_groups_path(@stage.id) %></p>
+
+
+<%= link_to 'Edit', edit_stage_path(@stage) %> |
+<%= link_to 'Back', stages_path %>

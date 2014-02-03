@@ -1,0 +1,7 @@
+<h1>Edit match #<%= @match.id %></h1>
+
+<%= form_for(@match, :url => stage_group_match_path(params[:stage_id], @match.group_id, @match.id)) do |f| %>
+<%= render :partial => "matches/form", :locals=>{:f=>f, :match=>@match} %>
+<% end %>
+
+<%= link_to 'Back', stage_group_matches_path(params[:stage_id], @match.group_id) %>

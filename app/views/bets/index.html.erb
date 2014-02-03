@@ -1,0 +1,20 @@
+<h1>Listing bets for <%= @player.name %></h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Match</th>
+      <th>Score team a</th>
+      <th>Score team b</th>
+      <th>When</th>
+    </tr>
+  </thead>
+  <tbody>
+
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New', new_player_bet_path(@player) %> |
+<%= link_to 'Back', player_path(@player) %>

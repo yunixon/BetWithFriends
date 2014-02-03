@@ -1,0 +1,21 @@
+<h1>Listing groups for stage <%= @stage.name %></h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @groups.each do |group| %>
+      <tr>
+        <td><%= link_to group.name, stage_group_path(@stage.id, group.id) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Group', new_stage_group_path(@stage) %>
