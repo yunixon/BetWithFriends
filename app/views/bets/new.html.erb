@@ -18,7 +18,7 @@
   Match : <%= collection_select(:bet, :match_id, Match.order(group_id: :asc), :id, :to_string) %> 
 </div>
 
-<%= fields_for :result do |result_form| %>
+<%= f.fields_for :result do |result_form| %>
 <div class="field">
   Score team A <%= result_form.number_field :score_team_a %>
 </div>

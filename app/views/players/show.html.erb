@@ -12,7 +12,9 @@
 
 <p>
   <strong>Crew:</strong>
+  <% if @player.crew %>
   <%= link_to @player.crew.name, @player.crew %>
+  <% end %>
 </p>
 
 <%= link_to 'Edit', edit_player_path(@player) %> |

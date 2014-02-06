@@ -8,7 +8,7 @@ class BetsController < ApplicationController
 
   # GET /players/:player_id/bets/:id
   def show
-  	@bet = Bet.where("player_id = ? and id = ?", params[:player_id], params[:id]).take!
+  	@bet = Bet.where("player_id = ? and bets.id = ?", params[:player_id], params[:id]).take!
   end
 
 
@@ -21,11 +21,11 @@ class BetsController < ApplicationController
   # POST /players/:player_id/bets
   def create
 
-		logger.debug "score_team_a ==> #{params[:result]}"
+		logger.debug "score_team_a ==> #{params[:bet]}"
 
 
 		@bet = Bet.new(bet_params)
-		@bet.create_result(params[:result])
+
 		@bet.player_id = params[:player_id]
 
 		logger.debug "bet to create ==> #{@bet.inspect}"

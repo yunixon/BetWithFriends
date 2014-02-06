@@ -10,7 +10,14 @@
     </tr>
   </thead>
   <tbody>
-
+    <% @bets.each do |bet| %>
+      <tr>
+        <td><%= bet.match_id %></td>
+        <td><%= bet.result.score_team_a %></td>
+        <td><%= bet.result.score_team_b %></td>
+        <td><%= bet.updated_at %></td>
+      </tr>
+    <% end %>
   </tbody>
 </table>
 

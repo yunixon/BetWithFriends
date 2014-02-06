@@ -7,8 +7,6 @@ class Player < ActiveRecord::Base
 
 	has_many :bet, inverse_of: :player
 
-
-
 	validates :name, presence: true
 	validates :emailAddress, presence: true, uniqueness: true
 	validates :password, confirmation: true
