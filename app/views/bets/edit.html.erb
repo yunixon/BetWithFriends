@@ -1,0 +1,6 @@
+<h1>Edit bet #<%= @bet.id %></h1>
+
+<%= form_for(@bet, :url => player_bet_path(@bet.player_id, @bet.id)) do |f| %>
+<%= render :partial => "bets/form", :locals=>{:f=>f, :bet=>@bet, :match_editable=>false} %>
+<% end %>
+

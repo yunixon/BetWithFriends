@@ -7,15 +7,19 @@
       <th>Score team a</th>
       <th>Score team b</th>
       <th>When</th>
+      <th></th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
-    <% @bets.each do |bet| %>
+    <% @player.bet.each do |bet| %>
       <tr>
-        <td><%= bet.match_id %></td>
+        <td><%= link_to bet.match_id, stage_group_match_path(bet.match.group.stage_id, bet.match.group_id, bet.match_id) %></td>
         <td><%= bet.result.score_team_a %></td>
         <td><%= bet.result.score_team_b %></td>
         <td><%= bet.updated_at %></td>
+        <td><%= link_to 'Show', player_bet_path(bet.player_id, bet.id) %></td>
+        <td><%= link_to 'Edit', edit_player_bet_path(bet.player_id, bet.id) %></td>
       </tr>
     <% end %>
   </tbody>

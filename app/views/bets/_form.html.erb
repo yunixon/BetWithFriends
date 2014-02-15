@@ -1,0 +1,43 @@
+
+<% if @bet.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@bet.errors.count, "error") %> prohibited this result from being saved:</h2>
+
+    <ul>
+    <% @bet.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+
+
+<div class="field">
+<% if match_editable %>
+  Match : <%= collection_select(:bet, :match_id, Match.order(group_id: :asc), :id, :to_string) %> 
+<% else %>
+  Match : <%= @bet.match.to_string %>
+<% end %>
+
+</div>
+
+
+
+<%= f.fields_for :result do |result_form| %>
+<div class="field">
+  Score team A <%= result_form.number_field :score_team_a %>
+</div>
+
+<div class="field">
+  Score team B <%= result_form.number_field :score_team_b %>
+</div>
+<% end %>
+
+
+<br/>
+<div class="actions">
+  <%= f.submit %>
+</div>
+
+<%= link_to 'Back', player_bets_path(params[:player_id]) %>

@@ -29,11 +29,9 @@ class Player < ActiveRecord::Base
 
 	# if the new password is blank, the old value is unchanged, otherwise, the new password is hashed
   def handle_password
-  	# if pas
   	if self.password.blank?
   		logger.debug "password not changed"
   		self.password = self.password_was
-  		logger.debug "password => #{self.inspect}"
   	else 
   		logger.debug "password is not blank, let's hash it"
     	self.password = Digest::SHA1.base64digest self.password + "|+|" + self.emailAddress
