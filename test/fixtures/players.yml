@@ -2,12 +2,12 @@
 
 one:
   name: MyString
-  emailAddress: MyString
+  email_address: MyString
   password: MyString
   crew_id: 1
 
 two:
   name: MyString
-  emailAddress: MyString
+  email_address: MyString
   password: MyString
   crew_id: 1

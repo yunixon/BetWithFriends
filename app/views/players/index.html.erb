@@ -4,7 +4,7 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>Emailaddress</th>
+      <th>email_address</th>
       <th>Crew</th>
       <th></th>
       <th></th>
@@ -16,7 +16,7 @@
     <% @players.each do |player| %>
       <tr>
         <td><%= player.name %></td>
-        <td><%= player.emailAddress %></td>
+        <td><%= player.email_address %></td>
         <td>
         <% if player.crew %><%= player.crew.name %><% end %>
         </td>

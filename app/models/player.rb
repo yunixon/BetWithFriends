@@ -4,11 +4,13 @@ class Player < ActiveRecord::Base
 
 	belongs_to :crew
 	default_scope {includes(:crew).references(:crew)}
+	#scope :authenticating, -> {includes(:authentication).references(:authentication)}
 
 	has_many :bet, inverse_of: :player
+	has_one :authentication, inverse_of: :player
 
 	validates :name, presence: true
-	validates :emailAddress, presence: true, uniqueness: true
+	validates :email_address, presence: true, uniqueness: true
 	validates :password, confirmation: true
 	validate :validates_password
 
@@ -17,8 +19,6 @@ class Player < ActiveRecord::Base
 
 	# password is required for creation and optional for updating
 	def validates_password
-		logger.debug "old password '#{self.password_was}'"
-		logger.debug "password => #{self.inspect}"
 		if self.new_record?
 			if password.blank?
 				errors.add(:password, "is required")
@@ -28,15 +28,17 @@ class Player < ActiveRecord::Base
 
 
 	# if the new password is blank, the old value is unchanged, otherwise, the new password is hashed
-  def handle_password
-  	if self.password.blank?
-  		logger.debug "password not changed"
-  		self.password = self.password_was
-  	else 
-  		logger.debug "password is not blank, let's hash it"
-    	self.password = Digest::SHA1.base64digest self.password + "|+|" + self.emailAddress
-  	end
-  end
+	def handle_password
+		if self.password.blank?
+			self.password = self.password_was
+		else 
+			self.password = hash_password self 
+		end
+	end
 
+	# hash the password
+	def hash_password(user)
+		return Digest::SHA1.base64digest user.password + "|+|" + user.email_address
+	end
 
 end

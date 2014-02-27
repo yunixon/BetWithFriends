@@ -1,5 +1,7 @@
 class PlayersController < ApplicationController
+  before_action :check_authentication, only: [:show, :edit, :update]
   before_action :set_player, only: [:show, :edit, :update, :destroy]
+
 
   # GET /players
   # GET /players.json
@@ -10,6 +12,9 @@ class PlayersController < ApplicationController
   # GET /players/1
   # GET /players/1.json
   def show
+    if @player.id != @authentication.player_id
+      raise "forbidden access !!!!"
+    end
   end
 
   # GET /players/new
@@ -62,6 +67,7 @@ class PlayersController < ApplicationController
   end
 
   private
+
     # Use callbacks to share common setup or constraints between actions.
     def set_player
       @player = Player.find(params[:id])
@@ -69,6 +75,6 @@ class PlayersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def player_params
-      params.require(:player).permit(:name, :emailAddress, :password, :password_confirmation, :crew_id)
+      params.require(:player).permit(:name, :email_address, :password, :password_confirmation, :crew_id)
     end
 end

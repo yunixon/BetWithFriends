@@ -1,0 +1,42 @@
+<h1>Login</h1>
+
+
+<%= form_for(@authentication, :url => authentications_path) do |f| %>
+
+<% if @authentication.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@authentication.errors.count, "error") %> prohibited this result from being saved:</h2>
+
+    <ul>
+    <% @authentication.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
+
+
+<div class="field">
+  <%= f.label :email_address %><br>
+  <%= f.text_field :email_address %>
+</div>
+
+<div class="field">
+  <%= f.label :password %><br>
+  <%= f.password_field :password %>
+</div>
+
+<br/>
+<div class="actions">
+  <%= f.submit "Login" %>
+</div>
+
+
+<% end %>
+
+
+
+<br/>
+
+<%= link_to 'Back', root_path %>

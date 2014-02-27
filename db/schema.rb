@@ -11,7 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140127205407) do
+ActiveRecord::Schema.define(version: 20140227205927) do
+
+  create_table "authentications", force: true do |t|
+    t.string   "ip"
+    t.string   "user_agent"
+    t.string   "token"
+    t.integer  "player_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "authentications", ["player_id"], name: "index_authentications_on_player_id", unique: true
+  add_index "authentications", ["token"], name: "index_authentications_on_token", unique: true
 
   create_table "bets", force: true do |t|
     t.datetime "date_time"
@@ -46,7 +58,7 @@ ActiveRecord::Schema.define(version: 20140127205407) do
 
   create_table "players", force: true do |t|
     t.string   "name"
-    t.string   "emailAddress"
+    t.string   "email_address"
     t.string   "password"
     t.integer  "crew_id"
     t.datetime "created_at"

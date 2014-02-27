@@ -1,10 +1,5 @@
 BetWithFriends::Application.routes.draw do
 
-  get "bet/new"
-  resources :players
-
-  resources :crews
-
   root "home#index"
 
   resources :stages do
@@ -24,21 +19,24 @@ BetWithFriends::Application.routes.draw do
     end
   end
 
+  # teams
   resources :teams do
     get 'matches'
   end
 
+  # crews
   resources :crews do
     get 'players'
   end
 
+  # players
   resources :players do
     resources :bets
   end
 
-
-
-
+  # authentication
+  get 'authentications/new' => 'authentications#new'
+  post 'authentications' => 'authentications#create'
 
 
   # The priority is based upon order of creation: first created -> highest priority.
