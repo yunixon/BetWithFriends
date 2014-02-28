@@ -64,7 +64,19 @@
 </nav>
 
     
+    <!-- Method Quickref -->
+<nav id="method-list-section" class="section">
+  <h3 class="section-header">Methods</h3>
+
+  <ul class="link-list">
     
+    <li><a href="#method-i-check_authentication">#check_authentication</a>
+    
+    <li><a href="#method-i-create_authentication">#create_authentication</a>
+    
+  </ul>
+</nav>
+
   </div>
 
   <div id="project-metadata">
@@ -86,6 +98,10 @@
     <li><a href="./ApplicationController.html">ApplicationController</a>
   
     <li><a href="./ApplicationHelper.html">ApplicationHelper</a>
+  
+    <li><a href="./Authentication.html">Authentication</a>
+  
+    <li><a href="./AuthenticationsController.html">AuthenticationsController</a>
   
     <li><a href="./Bet.html">Bet</a>
   
@@ -115,12 +131,6 @@
   
     <li><a href="./MatchesController.html">MatchesController</a>
   
-    <li><a href="./Player.html">Player</a>
-  
-    <li><a href="./PlayersController.html">PlayersController</a>
-  
-    <li><a href="./PlayersHelper.html">PlayersHelper</a>
-  
     <li><a href="./Result.html">Result</a>
   
     <li><a href="./Stage.html">Stage</a>
@@ -138,6 +148,12 @@
     <li><a href="./TeamsController.html">TeamsController</a>
   
     <li><a href="./TeamsHelper.html">TeamsHelper</a>
+  
+    <li><a href="./User.html">User</a>
+  
+    <li><a href="./UsersController.html">UsersController</a>
+  
+    <li><a href="./UsersHelper.html">UsersHelper</a>
   
   </ul>
 </nav>
@@ -166,6 +182,103 @@
 
     <!-- Methods -->
     
+     <section id="protected-instance-5Buntitled-5D-method-details" class="method-section section">
+      <h3 class="section-header">Protected Instance Methods</h3>
+
+    
+      <div id="method-i-check_authentication" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">check_authentication</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>check that the user is logged in</p>
+          
+
+          
+          <div class="method-source-code" id="check_authentication-source">
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 11</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">check_authentication</span>
+
+      <span class="ruby-comment"># look for an authentication</span>
+      <span class="ruby-ivar">@authentication</span> = <span class="ruby-constant">Authentication</span>.<span class="ruby-identifier">find_by</span> <span class="ruby-identifier">token</span><span class="ruby-operator">:</span> <span class="ruby-identifier">cookies</span>[<span class="ruby-value">:bwf_token</span>]
+      <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">debug</span> <span class="ruby-node">&quot;check authentication from #{cookies[:bwf_token].inspect}&quot;</span>
+
+      <span class="ruby-comment"># if not found, let&#39;s redirect to the login page</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-ivar">@authentication</span>.<span class="ruby-identifier">nil?</span> <span class="ruby-operator">||</span> <span class="ruby-ivar">@authentication</span>.<span class="ruby-identifier">updated_at</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">30</span>.<span class="ruby-identifier">minutes</span>.<span class="ruby-identifier">ago</span>
+              <span class="ruby-identifier">render</span> <span class="ruby-value">:file</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;public/401.html&quot;</span>, <span class="ruby-value">:status</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:unauthorized</span>, <span class="ruby-value">:layout</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span>
+              <span class="ruby-keyword">return</span>
+      <span class="ruby-keyword">end</span>
+
+      <span class="ruby-comment"># check the ip address as well as the user-agent</span>
+      <span class="ruby-identifier">user_agent</span> = <span class="ruby-constant">Digest</span><span class="ruby-operator">::</span><span class="ruby-constant">SHA1</span>.<span class="ruby-identifier">base64digest</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">user_agent</span>
+      <span class="ruby-keyword">if</span> <span class="ruby-ivar">@authentication</span>.<span class="ruby-identifier">user_agent</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">user_agent</span> <span class="ruby-operator">||</span> <span class="ruby-ivar">@authentication</span>.<span class="ruby-identifier">ip</span> <span class="ruby-operator">!=</span> <span class="ruby-identifier">request</span>.<span class="ruby-identifier">remote_ip</span>
+              <span class="ruby-ivar">@authentication</span>.<span class="ruby-identifier">destroy</span>
+              <span class="ruby-identifier">render</span> <span class="ruby-value">:file</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;public/401.html&quot;</span>, <span class="ruby-value">:status</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:unauthorized</span>, <span class="ruby-value">:layout</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span>
+              <span class="ruby-keyword">return</span>
+      <span class="ruby-keyword">end</span>
+
+      <span class="ruby-comment"># should the authentication be updated ? </span>
+      <span class="ruby-keyword">if</span> <span class="ruby-ivar">@authentication</span>.<span class="ruby-identifier">updated_at</span> <span class="ruby-operator">&lt;</span> <span class="ruby-value">5</span>.<span class="ruby-identifier">minutes</span>.<span class="ruby-identifier">ago</span>
+              <span class="ruby-ivar">@authentication</span> = <span class="ruby-identifier">save_authentication</span> <span class="ruby-ivar">@authentication</span>
+              <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">debug</span> <span class="ruby-node">&quot;authentication ##{@authentication.id} updateded&quot;</span>
+      <span class="ruby-keyword">end</span>
+
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- check_authentication-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- check_authentication-method -->
+
+    
+      <div id="method-i-create_authentication" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">create_authentication</span><span
+            class="method-args">(user_id)</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>create a new authentication, save it and update the cookie or return nil if
+a problem occured</p>
+          
+
+          
+          <div class="method-source-code" id="create_authentication-source">
+            <pre><span class="ruby-comment"># File app/controllers/application_controller.rb, line 41</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">create_authentication</span> <span class="ruby-identifier">user_id</span>
+              <span class="ruby-comment"># reuse the already existing authentication</span>
+  <span class="ruby-identifier">new_authentication</span> = <span class="ruby-constant">Authentication</span>.<span class="ruby-identifier">find_by</span> <span class="ruby-identifier">user_id</span><span class="ruby-operator">:</span> <span class="ruby-identifier">user_id</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-identifier">new_authentication</span>.<span class="ruby-identifier">nil?</span>
+    <span class="ruby-identifier">new_authentication</span> = <span class="ruby-constant">Authentication</span>.<span class="ruby-identifier">new</span>
+      <span class="ruby-identifier">new_authentication</span>.<span class="ruby-identifier">user_id</span> = <span class="ruby-identifier">user_id</span>
+  <span class="ruby-keyword">end</span>
+  <span class="ruby-keyword">return</span> <span class="ruby-identifier">save_authentication</span> <span class="ruby-identifier">new_authentication</span>
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- create_authentication-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- create_authentication-method -->
+
+    
+    </section><!-- protected-instance-method-details -->
+  
   </section><!-- 5Buntitled-5D -->
 
 </div><!-- documentation -->

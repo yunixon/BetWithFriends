@@ -1,14 +1,14 @@
 require 'test_helper'
 
-class PlayersControllerTest < ActionController::TestCase
+class UsersControllerTest < ActionController::TestCase
   setup do
-    @player = players(:one)
+    @user = users(:one)
   end
 
   test "should get index" do
     get :index
     assert_response :success
-    assert_not_nil assigns(:players)
+    assert_not_nil assigns(:users)
   end
 
   test "should get new" do
@@ -16,34 +16,34 @@ class PlayersControllerTest < ActionController::TestCase
     assert_response :success
   end
 
-  test "should create player" do
-    assert_difference('Player.count') do
-      post :create, player: { crew_id: @player.crew_id, email_address: @player.email_address, name: @player.name, password: @player.password }
+  test "should create user" do
+    assert_difference('User.count') do
+      post :create, user: { crew_id: @user.crew_id, email_address: @user.email_address, name: @user.name, password: @user.password }
     end
 
-    assert_redirected_to player_path(assigns(:player))
+    assert_redirected_to user_path(assigns(:user))
   end
 
-  test "should show player" do
-    get :show, id: @player
+  test "should show user" do
+    get :show, id: @user
     assert_response :success
   end
 
   test "should get edit" do
-    get :edit, id: @player
+    get :edit, id: @user
     assert_response :success
   end
 
-  test "should update player" do
-    patch :update, id: @player, player: { crew_id: @player.crew_id, email_address: @player.email_address, name: @player.name, password: @player.password }
-    assert_redirected_to player_path(assigns(:player))
+  test "should update user" do
+    patch :update, id: @user, user: { crew_id: @user.crew_id, email_address: @user.email_address, name: @user.name, password: @user.password }
+    assert_redirected_to user_path(assigns(:user))
   end
 
-  test "should destroy player" do
-    assert_difference('Player.count', -1) do
-      delete :destroy, id: @player
+  test "should destroy user" do
+    assert_difference('User.count', -1) do
+      delete :destroy, id: @user
     end
 
-    assert_redirected_to players_path
+    assert_redirected_to users_path
   end
 end

@@ -1,0 +1,22 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @user.name %>
+</p>
+
+<p>
+  <strong>email_address:</strong>
+  <%= @user.email_address %>
+</p>
+
+<p>
+  <strong>Crew:</strong>
+  <% if @user.crew %>
+  <%= link_to @user.crew.name, @user.crew %>
+  <% end %>
+</p>
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Bets', user_bets_path(@user) %> |
+<%= link_to 'Back', users_path %>

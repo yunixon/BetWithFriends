@@ -1,13 +1,13 @@
 require 'digest/sha1'
 
-class Player < ActiveRecord::Base
+class User < ActiveRecord::Base
 
 	belongs_to :crew
 	default_scope {includes(:crew).references(:crew)}
 	#scope :authenticating, -> {includes(:authentication).references(:authentication)}
 
-	has_many :bet, inverse_of: :player
-	has_one :authentication, inverse_of: :player
+	has_many :bet, inverse_of: :user
+	has_one :authentication, inverse_of: :user
 
 	validates :name, presence: true
 	validates :email_address, presence: true, uniqueness: true

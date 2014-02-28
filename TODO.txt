@@ -1,5 +1,5 @@
-Authentifier un joueur en mode stateless
-renommer player en user
+
+Intégrer l'html de Louis
 
 Mettre des méthodes / objets en commun (ex : récupérer un group ou un match) pour ne pas dupliquer du code
 

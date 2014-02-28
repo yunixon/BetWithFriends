@@ -26,11 +26,11 @@ BetWithFriends::Application.routes.draw do
 
   # crews
   resources :crews do
-    get 'players'
+    get 'users'
   end
 
-  # players
-  resources :players do
+  # users
+  resources :users do
     resources :bets
   end
 

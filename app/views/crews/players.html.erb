@@ -1,4 +1,4 @@
-<h1>Listing players for <%= @crew.name %></h1>
+<h1>Listing users for <%= @crew.name %></h1>
 
 <table>
   <thead>
@@ -8,9 +8,9 @@
   </thead>
 
   <tbody>
-    <% @players.each do |player| %>
+    <% @users.each do |user| %>
       <tr>
-        <td><%= link_to player.name, player %></td>
+        <td><%= link_to user.name, user %></td>
       </tr>
     <% end %>
   </tbody>

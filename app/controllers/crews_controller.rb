@@ -1,5 +1,5 @@
 class CrewsController < ApplicationController
-  before_action :set_crew, only: [:show, :edit, :update, :destroy, :players]
+  before_action :set_crew, only: [:show, :edit, :update, :destroy, :users]
 
   # GET /crews
   # GET /crews.json
@@ -61,9 +61,9 @@ class CrewsController < ApplicationController
     end
   end
 
-  # GET /crews/1/players
-  def players
-    @players = Player.where("crew_id = ?", @crew.id)
+  # GET /crews/1/users
+  def users
+    @users = User.where("crew_id = ?", @crew.id)
   end
 
   private

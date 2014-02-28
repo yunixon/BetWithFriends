@@ -80,11 +80,11 @@
     
     <li><a href="#method-i-new">#new</a>
     
-    <li><a href="#method-i-players">#players</a>
-    
     <li><a href="#method-i-show">#show</a>
     
     <li><a href="#method-i-update">#update</a>
+    
+    <li><a href="#method-i-users">#users</a>
     
   </ul>
 </nav>
@@ -110,6 +110,10 @@
     <li><a href="./ApplicationController.html">ApplicationController</a>
   
     <li><a href="./ApplicationHelper.html">ApplicationHelper</a>
+  
+    <li><a href="./Authentication.html">Authentication</a>
+  
+    <li><a href="./AuthenticationsController.html">AuthenticationsController</a>
   
     <li><a href="./Bet.html">Bet</a>
   
@@ -139,12 +143,6 @@
   
     <li><a href="./MatchesController.html">MatchesController</a>
   
-    <li><a href="./Player.html">Player</a>
-  
-    <li><a href="./PlayersController.html">PlayersController</a>
-  
-    <li><a href="./PlayersHelper.html">PlayersHelper</a>
-  
     <li><a href="./Result.html">Result</a>
   
     <li><a href="./Stage.html">Stage</a>
@@ -162,6 +160,12 @@
     <li><a href="./TeamsController.html">TeamsController</a>
   
     <li><a href="./TeamsHelper.html">TeamsHelper</a>
+  
+    <li><a href="./User.html">User</a>
+  
+    <li><a href="./UsersController.html">UsersController</a>
+  
+    <li><a href="./UsersHelper.html">UsersHelper</a>
   
   </ul>
 </nav>
@@ -357,36 +361,6 @@
       </div><!-- new-method -->
 
     
-      <div id="method-i-players" class="method-detail ">
-        
-        <div class="method-heading">
-          <span class="method-name">players</span><span
-            class="method-args">()</span>
-          <span class="method-click-advice">click to toggle source</span>
-        </div>
-        
-
-        <div class="method-description">
-          
-          <p>GET /crews/1/players</p>
-          
-
-          
-          <div class="method-source-code" id="players-source">
-            <pre><span class="ruby-comment"># File app/controllers/crews_controller.rb, line 65</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">players</span>
-  <span class="ruby-ivar">@players</span> = <span class="ruby-constant">Player</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;crew_id = ?&quot;</span>, <span class="ruby-ivar">@crew</span>.<span class="ruby-identifier">id</span>)
-<span class="ruby-keyword">end</span></pre>
-          </div><!-- players-source -->
-          
-        </div>
-
-        
-
-        
-      </div><!-- players-method -->
-
-    
       <div id="method-i-show" class="method-detail ">
         
         <div class="method-heading">
@@ -452,6 +426,36 @@
 
         
       </div><!-- update-method -->
+
+    
+      <div id="method-i-users" class="method-detail ">
+        
+        <div class="method-heading">
+          <span class="method-name">users</span><span
+            class="method-args">()</span>
+          <span class="method-click-advice">click to toggle source</span>
+        </div>
+        
+
+        <div class="method-description">
+          
+          <p>GET /crews/1/users</p>
+          
+
+          
+          <div class="method-source-code" id="users-source">
+            <pre><span class="ruby-comment"># File app/controllers/crews_controller.rb, line 65</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">users</span>
+  <span class="ruby-ivar">@users</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;crew_id = ?&quot;</span>, <span class="ruby-ivar">@crew</span>.<span class="ruby-identifier">id</span>)
+<span class="ruby-keyword">end</span></pre>
+          </div><!-- users-source -->
+          
+        </div>
+
+        
+
+        
+      </div><!-- users-method -->
 
     
     </section><!-- public-instance-method-details -->

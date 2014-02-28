@@ -38,12 +38,12 @@ class ApplicationController < ActionController::Base
 
 
   # create a new authentication, save it and update the cookie or return nil if a problem occured
-  def create_authentication player_id
+  def create_authentication user_id
 		# reuse the already existing authentication
-    new_authentication = Authentication.find_by player_id: player_id
+    new_authentication = Authentication.find_by user_id: user_id
     if new_authentication.nil?
       new_authentication = Authentication.new
-     	new_authentication.player_id = player_id
+     	new_authentication.user_id = user_id
     end
     return save_authentication new_authentication
   end

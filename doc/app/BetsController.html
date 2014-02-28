@@ -107,6 +107,10 @@
   
     <li><a href="./ApplicationHelper.html">ApplicationHelper</a>
   
+    <li><a href="./Authentication.html">Authentication</a>
+  
+    <li><a href="./AuthenticationsController.html">AuthenticationsController</a>
+  
     <li><a href="./Bet.html">Bet</a>
   
     <li><a href="./BetHelper.html">BetHelper</a>
@@ -135,12 +139,6 @@
   
     <li><a href="./MatchesController.html">MatchesController</a>
   
-    <li><a href="./Player.html">Player</a>
-  
-    <li><a href="./PlayersController.html">PlayersController</a>
-  
-    <li><a href="./PlayersHelper.html">PlayersHelper</a>
-  
     <li><a href="./Result.html">Result</a>
   
     <li><a href="./Stage.html">Stage</a>
@@ -158,6 +156,12 @@
     <li><a href="./TeamsController.html">TeamsController</a>
   
     <li><a href="./TeamsHelper.html">TeamsHelper</a>
+  
+    <li><a href="./User.html">User</a>
+  
+    <li><a href="./UsersController.html">UsersController</a>
+  
+    <li><a href="./UsersHelper.html">UsersHelper</a>
   
   </ul>
 </nav>
@@ -201,7 +205,7 @@
 
         <div class="method-description">
           
-          <p>POST /players/:player_id/bets</p>
+          <p>POST /users/:user_id/bets</p>
           
 
           
@@ -210,12 +214,12 @@
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
 
               <span class="ruby-ivar">@bet</span> = <span class="ruby-constant">Bet</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">bet_params</span>)
-              <span class="ruby-ivar">@bet</span>.<span class="ruby-identifier">player_id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:player_id</span>]
+              <span class="ruby-ivar">@bet</span>.<span class="ruby-identifier">user_id</span> = <span class="ruby-identifier">params</span>[<span class="ruby-value">:user_id</span>]
 
               <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-keyword">if</span> <span class="ruby-ivar">@bet</span>.<span class="ruby-identifier">save</span>
       <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">debug</span> <span class="ruby-node">&quot;bet created #{@bet.inspect}&quot;</span>
-      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">player_bet_path</span>(<span class="ruby-ivar">@bet</span>.<span class="ruby-identifier">player_id</span>, <span class="ruby-ivar">@bet</span>.<span class="ruby-identifier">id</span>), <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;Bet was successfully created.&#39;</span> }
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">user_bet_path</span>(<span class="ruby-ivar">@bet</span>.<span class="ruby-identifier">user_id</span>, <span class="ruby-ivar">@bet</span>.<span class="ruby-identifier">id</span>), <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;Bet was successfully created.&#39;</span> }
     <span class="ruby-keyword">else</span>
       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">action</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;new&#39;</span> }
     <span class="ruby-keyword">end</span>
@@ -242,7 +246,7 @@
 
         <div class="method-description">
           
-          <p>GET /players/:player_id/bets/:id/edit</p>
+          <p>GET /users/:user_id/bets/:id/edit</p>
           
 
           
@@ -271,15 +275,15 @@
 
         <div class="method-description">
           
-          <p>GET /players/:player_id/bets</p>
+          <p>GET /users/:user_id/bets</p>
           
 
           
           <div class="method-source-code" id="index-source">
             <pre><span class="ruby-comment"># File app/controllers/bets_controller.rb, line 7</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
-  <span class="ruby-ivar">@player</span> = <span class="ruby-constant">Player</span>.<span class="ruby-identifier">includes</span>(<span class="ruby-identifier">bet</span><span class="ruby-operator">:</span> [<span class="ruby-value">:result</span>, <span class="ruby-identifier">match</span>[[<span class="ruby-value">:group</span>, <span class="ruby-value">:team_a</span>, <span class="ruby-value">:team_b</span>]]).<span class="ruby-identifier">references</span>(<span class="ruby-value">:bet</span>).<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:player_id</span>])
-  <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">debug</span> <span class="ruby-node">&quot;List #{@player.bet.length} bet(s) for player ##{params[:player_id]}&quot;</span>
+  <span class="ruby-ivar">@user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">includes</span>(<span class="ruby-identifier">bet</span><span class="ruby-operator">:</span> [<span class="ruby-value">:result</span>, <span class="ruby-identifier">match</span>[[<span class="ruby-value">:group</span>, <span class="ruby-value">:team_a</span>, <span class="ruby-value">:team_b</span>]]).<span class="ruby-identifier">references</span>(<span class="ruby-value">:bet</span>).<span class="ruby-identifier">find</span>(<span class="ruby-identifier">params</span>[<span class="ruby-value">:user_id</span>])
+  <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">debug</span> <span class="ruby-node">&quot;List #{@user.bet.length} bet(s) for user ##{params[:user_id]}&quot;</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- index-source -->
           
@@ -302,7 +306,7 @@
 
         <div class="method-description">
           
-          <p>GET /players/:player_id/bets/new</p>
+          <p>GET /users/:user_id/bets/new</p>
           
 
           
@@ -333,7 +337,7 @@
 
         <div class="method-description">
           
-          <p>GET /players/:player_id/bets/:id</p>
+          <p>GET /users/:user_id/bets/:id</p>
           
 
           
@@ -363,7 +367,7 @@
 
         <div class="method-description">
           
-          <p>PUT/PATCH /players/:player_id/bets/:id</p>
+          <p>PUT/PATCH /users/:user_id/bets/:id</p>
           
 
           
@@ -373,7 +377,7 @@
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
     <span class="ruby-keyword">if</span> <span class="ruby-ivar">@bet</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">bet_params_for_update</span>)
       <span class="ruby-identifier">logger</span>.<span class="ruby-identifier">debug</span> <span class="ruby-node">&quot;bet updated #{@bet.inspect}&quot;</span>
-      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">player_bet_path</span>(<span class="ruby-ivar">@bet</span>.<span class="ruby-identifier">player_id</span>, <span class="ruby-ivar">@bet</span>.<span class="ruby-identifier">id</span>), <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;Bet was successfully updated.&#39;</span> }
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">user_bet_path</span>(<span class="ruby-ivar">@bet</span>.<span class="ruby-identifier">user_id</span>, <span class="ruby-ivar">@bet</span>.<span class="ruby-identifier">id</span>), <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;Bet was successfully updated.&#39;</span> }
     <span class="ruby-keyword">else</span>
       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">action</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;edit&#39;</span> }
     <span class="ruby-keyword">end</span>

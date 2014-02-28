@@ -1,52 +1,52 @@
 class BetsController < ApplicationController
-	before_action :set_player, only: [:new, :create, :edit, :update]
+	before_action :set_user, only: [:new, :create, :edit, :update]
   before_action :set_bet, only: [:show, :edit, :update]
 
 
-  # GET /players/:player_id/bets
+  # GET /users/:user_id/bets
   def index
-    @player = Player.includes(bet: [:result, match:[:group, :team_a, :team_b]]).references(:bet).find(params[:player_id])
-    logger.debug "List #{@player.bet.length} bet(s) for player ##{params[:player_id]}"
+    @user = User.includes(bet: [:result, match:[:group, :team_a, :team_b]]).references(:bet).find(params[:user_id])
+    logger.debug "List #{@user.bet.length} bet(s) for user ##{params[:user_id]}"
   end
 
-  # GET /players/:player_id/bets/:id
+  # GET /users/:user_id/bets/:id
   def show
     logger.debug "show bet #{@bet.inspect}"
   end
 
 
-  # GET /players/:player_id/bets/new
+  # GET /users/:user_id/bets/new
   def new
   	@bet = Bet.new
   	@bet.build_result
   end
 
-  # GET /players/:player_id/bets/:id/edit
+  # GET /users/:user_id/bets/:id/edit
   def edit
   end
 
-  # POST /players/:player_id/bets
+  # POST /users/:user_id/bets
   def create
 
 		@bet = Bet.new(bet_params)
-		@bet.player_id = params[:player_id]
+		@bet.user_id = params[:user_id]
 
 		respond_to do |format|
       if @bet.save
         logger.debug "bet created #{@bet.inspect}"
-        format.html { redirect_to player_bet_path(@bet.player_id, @bet.id), notice: 'Bet was successfully created.' }
+        format.html { redirect_to user_bet_path(@bet.user_id, @bet.id), notice: 'Bet was successfully created.' }
       else
         format.html { render action: 'new' }
       end
     end
 	end
 
-  # PUT/PATCH /players/:player_id/bets/:id
+  # PUT/PATCH /users/:user_id/bets/:id
   def update
     respond_to do |format|
       if @bet.update(bet_params_for_update)
         logger.debug "bet updated #{@bet.inspect}"
-        format.html { redirect_to player_bet_path(@bet.player_id, @bet.id), notice: 'Bet was successfully updated.' }
+        format.html { redirect_to user_bet_path(@bet.user_id, @bet.id), notice: 'Bet was successfully updated.' }
       else
         format.html { render action: 'edit' }
       end
@@ -58,12 +58,12 @@ class BetsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_bet
-      @bet = Bet.where("player_id = ? and bets.id = ?", params[:player_id], params[:id]).take!
+      @bet = Bet.where("user_id = ? and bets.id = ?", params[:user_id], params[:id]).take!
     end
 
     # Use callbacks to share common setup or constraints between actions.
-    def set_player
-      @player = Player.find(params[:player_id])
+    def set_user
+      @user = User.find(params[:user_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

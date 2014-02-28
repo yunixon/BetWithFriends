@@ -70,7 +70,7 @@
 
   <ul class="link-list">
     
-    <li><a href="#method-i-one_bet_per_match_per_player">#one_bet_per_match_per_player</a>
+    <li><a href="#method-i-one_bet_per_match_per_user">#one_bet_per_match_per_user</a>
     
   </ul>
 </nav>
@@ -96,6 +96,10 @@
     <li><a href="./ApplicationController.html">ApplicationController</a>
   
     <li><a href="./ApplicationHelper.html">ApplicationHelper</a>
+  
+    <li><a href="./Authentication.html">Authentication</a>
+  
+    <li><a href="./AuthenticationsController.html">AuthenticationsController</a>
   
     <li><a href="./Bet.html">Bet</a>
   
@@ -125,12 +129,6 @@
   
     <li><a href="./MatchesController.html">MatchesController</a>
   
-    <li><a href="./Player.html">Player</a>
-  
-    <li><a href="./PlayersController.html">PlayersController</a>
-  
-    <li><a href="./PlayersHelper.html">PlayersHelper</a>
-  
     <li><a href="./Result.html">Result</a>
   
     <li><a href="./Stage.html">Stage</a>
@@ -148,6 +146,12 @@
     <li><a href="./TeamsController.html">TeamsController</a>
   
     <li><a href="./TeamsHelper.html">TeamsHelper</a>
+  
+    <li><a href="./User.html">User</a>
+  
+    <li><a href="./UsersController.html">UsersController</a>
+  
+    <li><a href="./UsersHelper.html">UsersHelper</a>
   
   </ul>
 </nav>
@@ -180,10 +184,10 @@
       <h3 class="section-header">Public Instance Methods</h3>
 
     
-      <div id="method-i-one_bet_per_match_per_player" class="method-detail ">
+      <div id="method-i-one_bet_per_match_per_user" class="method-detail ">
         
         <div class="method-heading">
-          <span class="method-name">one_bet_per_match_per_player</span><span
+          <span class="method-name">one_bet_per_match_per_user</span><span
             class="method-args">()</span>
           <span class="method-click-advice">click to toggle source</span>
         </div>
@@ -191,26 +195,26 @@
 
         <div class="method-description">
           
-          <p>only one bet per match per player is allowed</p>
+          <p>only one bet per match per user is allowed</p>
           
 
           
-          <div class="method-source-code" id="one_bet_per_match_per_player-source">
+          <div class="method-source-code" id="one_bet_per_match_per_user-source">
             <pre><span class="ruby-comment"># File app/models/bet.rb, line 19</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">one_bet_per_match_per_player</span>
-        <span class="ruby-identifier">existing_bet</span> = <span class="ruby-constant">Bet</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;player_id = ? AND match_id=?&quot;</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">player_id</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">match_id</span>).<span class="ruby-identifier">take</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">one_bet_per_match_per_user</span>
+        <span class="ruby-identifier">existing_bet</span> = <span class="ruby-constant">Bet</span>.<span class="ruby-identifier">where</span>(<span class="ruby-string">&quot;user_id = ? AND match_id=?&quot;</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">user_id</span>, <span class="ruby-keyword">self</span>.<span class="ruby-identifier">match_id</span>).<span class="ruby-identifier">take</span>
         <span class="ruby-keyword">unless</span> <span class="ruby-identifier">existing_bet</span>.<span class="ruby-identifier">nil?</span>
                 <span class="ruby-identifier">errors</span>.<span class="ruby-identifier">add</span>(<span class="ruby-value">:match</span>, <span class="ruby-string">&quot;Only one bet per match is allowed&quot;</span>)
         <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
-          </div><!-- one_bet_per_match_per_player-source -->
+          </div><!-- one_bet_per_match_per_user-source -->
           
         </div>
 
         
 
         
-      </div><!-- one_bet_per_match_per_player-method -->
+      </div><!-- one_bet_per_match_per_user-method -->
 
     
     </section><!-- public-instance-method-details -->

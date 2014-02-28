@@ -19,10 +19,10 @@ class AuthenticationsController < ApplicationController
       return
     end
 
-    # first check the player...
-    player = Player.find_by email_address: @authentication.email_address
-    if player.nil?
-      logger.debug "player #{@authentication.email_address} not found for authentication"
+    # first check the user...
+    user = User.find_by email_address: @authentication.email_address
+    if user.nil?
+      logger.debug "user #{@authentication.email_address} not found for authentication"
       @authentication.errors.add(:base, "email address or password incorect")
       render action: 'new'
       return
@@ -31,7 +31,7 @@ class AuthenticationsController < ApplicationController
 
     # ...then the password
     actual_password = Digest::SHA1.base64digest @authentication.password + "|+|" + @authentication.email_address
-    if actual_password != player.password
+    if actual_password != user.password
       logger.debug "incorrect password to authenticate user #{@authentication.email_address}"
       @authentication.errors.add(:base, "email address or password incorect")
       render action: 'new'
@@ -39,7 +39,7 @@ class AuthenticationsController < ApplicationController
     end
 
     # create the authentication
-    @authentication = create_authentication player.id
+    @authentication = create_authentication user.id
     if @authentication.nil?
       logger.debug "error saving authentication "
       render action: 'new'

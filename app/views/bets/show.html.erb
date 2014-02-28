@@ -1,4 +1,4 @@
-<h1>Bet for player <strong>XXXXXX</strong></h1>
+<h1>Bet for user <strong>XXXXXX</strong></h1>
 
 <div class="field">match : <%= @bet.match.to_string %></div>
 <div class="field">score team a : <%= @bet.result.score_team_a %></div>
@@ -7,4 +7,4 @@
 
 <br/>
 
-<%= link_to 'Back', player_bets_path(params[:player_id]) %>
+<%= link_to 'Back', user_bets_path(params[:user_id]) %>

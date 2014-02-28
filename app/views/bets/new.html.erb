@@ -1,5 +1,5 @@
-<h1>New bet for player #<%= @player.name %></h1>
+<h1>New bet for user #<%= @user.name %></h1>
 
-<%= form_for(@bet, :url => player_bets_path(params[:player_id])) do |f| %>
+<%= form_for(@bet, :url => user_bets_path(params[:user_id])) do |f| %>
 <%= render :partial => "bets/form", :locals=>{:f=>f, :bet=>@bet, :match_editable=>true} %>
 <% end %>

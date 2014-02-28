@@ -4,7 +4,7 @@
 <head>
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
 
-<title>class PlayersController - Rails Application Documentation</title>
+<title>class UsersController - Rails Application Documentation</title>
 
 <link type="text/css" media="screen" href="./rdoc.css" rel="stylesheet">
 
@@ -47,7 +47,7 @@
     <nav id="file-list-section" class="section">
   <h3 class="section-header">Defined In</h3>
   <ul>
-    <li>app/controllers/players_controller.rb
+    <li>app/controllers/users_controller.rb
   </ul>
 </nav>
 
@@ -109,6 +109,10 @@
   
     <li><a href="./ApplicationHelper.html">ApplicationHelper</a>
   
+    <li><a href="./Authentication.html">Authentication</a>
+  
+    <li><a href="./AuthenticationsController.html">AuthenticationsController</a>
+  
     <li><a href="./Bet.html">Bet</a>
   
     <li><a href="./BetHelper.html">BetHelper</a>
@@ -137,12 +141,6 @@
   
     <li><a href="./MatchesController.html">MatchesController</a>
   
-    <li><a href="./Player.html">Player</a>
-  
-    <li><a href="./PlayersController.html">PlayersController</a>
-  
-    <li><a href="./PlayersHelper.html">PlayersHelper</a>
-  
     <li><a href="./Result.html">Result</a>
   
     <li><a href="./Stage.html">Stage</a>
@@ -161,6 +159,12 @@
   
     <li><a href="./TeamsHelper.html">TeamsHelper</a>
   
+    <li><a href="./User.html">User</a>
+  
+    <li><a href="./UsersController.html">UsersController</a>
+  
+    <li><a href="./UsersHelper.html">UsersHelper</a>
+  
   </ul>
 </nav>
 
@@ -168,7 +172,7 @@
 </nav>
 
 <div id="documentation">
-  <h1 class="class">class PlayersController</h1>
+  <h1 class="class">class UsersController</h1>
 
   <div id="description" class="description">
     
@@ -203,22 +207,22 @@
 
         <div class="method-description">
           
-          <p>POST /players POST /players.json</p>
+          <p>POST /users POST /users.json</p>
           
 
           
           <div class="method-source-code" id="create-source">
-            <pre><span class="ruby-comment"># File app/controllers/players_controller.rb, line 26</span>
+            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 32</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">create</span>
-  <span class="ruby-ivar">@player</span> = <span class="ruby-constant">Player</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">player_params</span>)
+  <span class="ruby-ivar">@user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">new</span>(<span class="ruby-identifier">user_params</span>)
 
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@player</span>.<span class="ruby-identifier">save</span>
-      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-ivar">@player</span>, <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;Player was successfully created.&#39;</span> }
-      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">action</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;show&#39;</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:created</span>, <span class="ruby-identifier">location</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@player</span> }
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">save</span>
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-ivar">@user</span>, <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;User was successfully created.&#39;</span> }
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">action</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;show&#39;</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:created</span>, <span class="ruby-identifier">location</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@user</span> }
     <span class="ruby-keyword">else</span>
       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">action</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;new&#39;</span> }
-      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@player</span>.<span class="ruby-identifier">errors</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:unprocessable_entity</span> }
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">errors</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:unprocessable_entity</span> }
     <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
@@ -243,16 +247,16 @@
 
         <div class="method-description">
           
-          <p>DELETE /players/1 DELETE /players/1.json</p>
+          <p>DELETE /users/1 DELETE /users/1.json</p>
           
 
           
           <div class="method-source-code" id="destroy-source">
-            <pre><span class="ruby-comment"># File app/controllers/players_controller.rb, line 56</span>
+            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 62</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">destroy</span>
-  <span class="ruby-ivar">@player</span>.<span class="ruby-identifier">destroy</span>
+  <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">destroy</span>
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
-    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">players_url</span> }
+    <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-identifier">users_url</span> }
     <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">head</span> <span class="ruby-value">:no_content</span> }
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
@@ -277,12 +281,12 @@
 
         <div class="method-description">
           
-          <p>GET /players/1/edit</p>
+          <p>GET /users/1/edit</p>
           
 
           
           <div class="method-source-code" id="edit-source">
-            <pre><span class="ruby-comment"># File app/controllers/players_controller.rb, line 21</span>
+            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 27</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">edit</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- edit-source -->
@@ -306,14 +310,14 @@
 
         <div class="method-description">
           
-          <p>GET /players GET /players.json</p>
+          <p>GET /users GET /users.json</p>
           
 
           
           <div class="method-source-code" id="index-source">
-            <pre><span class="ruby-comment"># File app/controllers/players_controller.rb, line 6</span>
+            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 8</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">index</span>
-  <span class="ruby-ivar">@players</span> = <span class="ruby-constant">Player</span>.<span class="ruby-identifier">all</span>
+  <span class="ruby-ivar">@users</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">all</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- index-source -->
           
@@ -336,14 +340,14 @@
 
         <div class="method-description">
           
-          <p>GET /players/new</p>
+          <p>GET /users/new</p>
           
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File app/controllers/players_controller.rb, line 16</span>
+            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 22</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">new</span>
-  <span class="ruby-ivar">@player</span> = <span class="ruby-constant">Player</span>.<span class="ruby-identifier">new</span>
+  <span class="ruby-ivar">@user</span> = <span class="ruby-constant">User</span>.<span class="ruby-identifier">new</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- new-source -->
           
@@ -366,13 +370,17 @@
 
         <div class="method-description">
           
-          <p>GET /players/1 GET /players/1.json</p>
+          <p>GET /users/1 GET /users/1.json</p>
           
 
           
           <div class="method-source-code" id="show-source">
-            <pre><span class="ruby-comment"># File app/controllers/players_controller.rb, line 12</span>
+            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 14</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">show</span>
+  <span class="ruby-keyword">if</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">id</span> <span class="ruby-operator">!=</span> <span class="ruby-ivar">@authentication</span>.<span class="ruby-identifier">user_id</span>
+    <span class="ruby-identifier">render</span> <span class="ruby-value">:file</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-string">&quot;public/403.html&quot;</span>, <span class="ruby-value">:status</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-value">:forbidden</span>, <span class="ruby-value">:layout</span> =<span class="ruby-operator">&gt;</span> <span class="ruby-keyword">false</span>
+    <span class="ruby-keyword">return</span>
+  <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>
           </div><!-- show-source -->
           
@@ -395,20 +403,20 @@
 
         <div class="method-description">
           
-          <p>PATCH/PUT /players/1 PATCH/PUT /players/1.json</p>
+          <p>PATCH/PUT /users/1 PATCH/PUT /users/1.json</p>
           
 
           
           <div class="method-source-code" id="update-source">
-            <pre><span class="ruby-comment"># File app/controllers/players_controller.rb, line 42</span>
+            <pre><span class="ruby-comment"># File app/controllers/users_controller.rb, line 48</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">update</span>
   <span class="ruby-identifier">respond_to</span> <span class="ruby-keyword">do</span> <span class="ruby-operator">|</span><span class="ruby-identifier">format</span><span class="ruby-operator">|</span>
-    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@player</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">player_params</span>)
-      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-ivar">@player</span>, <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;Player was successfully updated.&#39;</span> }
+    <span class="ruby-keyword">if</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">update</span>(<span class="ruby-identifier">user_params</span>)
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">redirect_to</span> <span class="ruby-ivar">@user</span>, <span class="ruby-identifier">notice</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;user was successfully updated.&#39;</span> }
       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">head</span> <span class="ruby-value">:no_content</span> }
     <span class="ruby-keyword">else</span>
       <span class="ruby-identifier">format</span>.<span class="ruby-identifier">html</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">action</span><span class="ruby-operator">:</span> <span class="ruby-string">&#39;edit&#39;</span> }
-      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@player</span>.<span class="ruby-identifier">errors</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:unprocessable_entity</span> }
+      <span class="ruby-identifier">format</span>.<span class="ruby-identifier">json</span> { <span class="ruby-identifier">render</span> <span class="ruby-identifier">json</span><span class="ruby-operator">:</span> <span class="ruby-ivar">@user</span>.<span class="ruby-identifier">errors</span>, <span class="ruby-identifier">status</span><span class="ruby-operator">:</span> <span class="ruby-value">:unprocessable_entity</span> }
     <span class="ruby-keyword">end</span>
   <span class="ruby-keyword">end</span>
 <span class="ruby-keyword">end</span></pre>

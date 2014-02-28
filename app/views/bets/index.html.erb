@@ -1,4 +1,4 @@
-<h1>Listing bets for <%= @player.name %></h1>
+<h1>Listing bets for <%= @user.name %></h1>
 
 <table>
   <thead>
@@ -12,14 +12,14 @@
     </tr>
   </thead>
   <tbody>
-    <% @player.bet.each do |bet| %>
+    <% @user.bet.each do |bet| %>
       <tr>
         <td><%= link_to bet.match_id, stage_group_match_path(bet.match.group.stage_id, bet.match.group_id, bet.match_id) %></td>
         <td><%= bet.result.score_team_a %></td>
         <td><%= bet.result.score_team_b %></td>
         <td><%= bet.updated_at %></td>
-        <td><%= link_to 'Show', player_bet_path(bet.player_id, bet.id) %></td>
-        <td><%= link_to 'Edit', edit_player_bet_path(bet.player_id, bet.id) %></td>
+        <td><%= link_to 'Show', user_bet_path(bet.user_id, bet.id) %></td>
+        <td><%= link_to 'Edit', edit_user_bet_path(bet.user_id, bet.id) %></td>
       </tr>
     <% end %>
   </tbody>
@@ -27,5 +27,5 @@
 
 <br>
 
-<%= link_to 'New', new_player_bet_path(@player) %> |
-<%= link_to 'Back', player_path(@player) %>
+<%= link_to 'New', new_user_bet_path(@user) %> |
+<%= link_to 'Back', user_path(@user) %>
