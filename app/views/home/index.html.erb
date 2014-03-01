@@ -1,10 +1,90 @@
-<h1>Homepage</h1>
 
-<%= link_to 'Stages', stages_path %> <br/>
-<%= link_to 'Teams', teams_path %>
+<header>
+	<nav class="navbar-custom navbar-default" role="navigation">
+  	<div class="container">
+    		<!-- Brand and toggle get grouped for better mobile display -->
+    		<div class="navbar-header">
+    		  <a class="navbar-brand" href="test.html"><%= image_tag("logo-32.png")%> Bet With Friends</a>
+    		</div>
 
-<hr width="60%"/>
+    		<!-- Collect the nav links, forms, and other content for toggling -->
+    		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    		  <ul class="nav navbar-nav navbar-right">
+    			<li><a href="#">Informations</a></li>
+    			<li><a href="#">Calendrier</a></li>
+    			<li><div><a href="/authentications/new" class="btn btn-default navbar-btn">Se connecter</a></div></li>
+    		  </ul>
+    		</div><!-- /.navbar-collapse -->
+  	  </div><!-- /.container-fluid -->
+	</nav>
+</header>
 
-<%= link_to 'Crews', crews_path %> <br/>
-<%= link_to 'Users', users_path %> </br>
-<%= link_to 'Login', authentications_new_path %> 
+<!-- Main jumbotron for a primary marketing message or call to action -->
+<div class="jumbotron">
+  <div class="container">
+    <div class="row">
+    	<div class="col-xs-8"> 
+    		<h1>Cette année, Paul le poulpe c'est vous !</h1>
+    			<p>Inscrivez vous et défiez les autres en pronostiquant<br /> les matchs de la coupe du monde 2014.</p>
+    			<p><a class="btn btn-primary btn-lg" href="/users/new" role="button" >S'inscrire &raquo;</a></p>
+    	</div>
+    	<div class="col-md-4"><%= image_tag("bandeau.png") %></div>
+    </div>
+  </div>
+</div>
+<div class="container marketing">
+
+  <!-- Three columns of text below the carousel -->
+  <div class="row">
+    <div class="col-lg-4">
+      <h2>S'inscrire</h2>
+      <p>L'inscription ne prendra que quelque seconde elle vous permettra de pronostiquer et voir votre classement.<br /> <br />     &nbsp; </p>
+      <p><a class="btn btn-default" href="/users/new" role="button">Je m'inscris  &raquo;</a></p>
+    </div><!-- /.col-lg-4 -->
+    <div class="col-lg-4">
+      <h2>Pronostiquer</h2>
+      <p>Vous penser pouvoir connaitre l'issue d'un match ? Faite vos pronostiques !  <br />     &nbsp;   <br />     &nbsp;                  </p>
+      <p><a class="btn btn-default" href="#" role="button">Pronostiques &raquo;</a></p>
+    </div><!-- /.col-lg-4 -->
+    <div class="col-lg-4">
+      <h2>Comparer</h2>
+      <p>Aprés chaque match on calcul les points gagnés grâce aux pronostiques. Le joueur ayant le plus de point sera au top du classement. Pour plus de fun invitez vos amis à vous rejoindre!</p>
+      <p><a class="btn btn-default" href="#" role="button">Inviter mes amis &raquo;</a></p>
+    </div><!-- /.col-lg-4 -->
+  </div><!-- /.row -->
+
+
+  <!-- START THE FEATURETTES -->
+
+  <hr class="featurette-divider">
+
+  <div class="row featurette">
+    <div class="col-md-7">
+      <h2 class="featurette-heading">Chaque jour un pronostique <span class="text-muted">Il va falloir choisir</span></h2>
+      <p class="lead">Pour chaque match vous choisisez qui est l'équipe gagnante. Vous pouvez aussi essayer de deviner le score exact à la fin du match, cela vous rapportera plus de points!</p>
+    </div>
+    <div class="col-md-5"><%= image_tag("event.png", class: "featurette-image img-responsive", alt: "Prenez date !") %></div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <div class="row featurette">
+    <div class="col-md-5">
+      <%= image_tag("format2.png", class: "featurette-image img-responsive", alt: "S'adapte à tous les équipements") %>
+    </div>
+    <div class="col-md-7">
+      <h2 class="featurette-heading">Jouez de n'importe où <span class="text-muted">même sur mobile</span></h2>
+      <p class="lead">Vous pouvez jouer à partir de n'importe quel appareil diposant d'un navigateur récent et d'une connexion internet.</p>
+    </div>
+  </div>
+
+  <hr class="featurette-divider">
+
+  <!-- /END THE FEATURETTES -->
+  <!-- FOOTER -->
+  <footer>
+    <p class="pull-right"><span class="glyphicon glyphicon-arrow-up"></span> <a href="#">Retour en haut</a></p>
+    <p>Fait avec <span class="amour">amour</span> à la Colle sur Loup &middot; 2014</p>
+  </footer>
+
+</div><!-- /.container -->
