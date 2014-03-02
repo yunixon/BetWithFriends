@@ -1,12 +1,16 @@
-<h1>Login</h1>
 
 
-<%= form_for(@authentication, :url => authentications_path) do |f| %>
+
+
+
+
+<div class="container-fluid sign">
+  <%= form_for(@authentication, :url => authentications_path, :html => {class: "form-signin", role: "form"}) do |f| %>
+    <h2 class="form-signin-heading">Identifiez vous</h2>    
 
 <% if @authentication.errors.any? %>
   <div id="error_explanation">
     <h2><%= pluralize(@authentication.errors.count, "error") %> prohibited this result from being saved:</h2>
-
     <ul>
     <% @authentication.errors.full_messages.each do |msg| %>
       <li><%= msg %></li>
@@ -15,28 +19,13 @@
   </div>
 <% end %>
 
-
-
-<div class="field">
-  <%= f.label :email_address %><br>
-  <%= f.text_field :email_address %>
-</div>
-
-<div class="field">
-  <%= f.label :password %><br>
-  <%= f.password_field :password %>
-</div>
-
-<br/>
-<div class="actions">
-  <%= f.submit "Login" %>
+    <%= f.text_field :email_address, class: "form-control", placeholder: "Adresse email", autofocus: true, required: true %>
+    <%= f.password_field :password, class: "field form-control", placeholder: "Mot de passe", required: true  %>
+    <%= f.submit "Se connecter", class: "btn btn-lg btn-primary btn-block" %>
+    <!-- <a class="login-link" href="#">Mot de passe perdu ?</a> -->
+  <% end %>
 </div>
 
 
-<% end %>
 
 
-
-<br/>
-
-<%= link_to 'Back', root_path %>

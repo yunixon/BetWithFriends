@@ -21,12 +21,18 @@
  	<p class="browsehappy">Votre navigateur est <strong>dépassé</strong>. Pour le bien d'internet, <a href="http://browsehappy.com/">mettez à jour votre navigateur</a>.</p>
 	<![endif]-->
 
+	<%= render template: "layouts/header" %>
 
 	<%= yield %>
 
+	<%= render template: "layouts/footer" %>
+
 
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-	<script>window.jQuery || document.write(" <%= javascript_include_tag('jquery_local').gsub('</script>','<\/script>').html_safe %> ")</script>
+	<script>
+		window.jQuery || 
+		document.write(" <%= javascript_include_tag("jquery_local").gsub('</script>','<\/script>').gsub('"', "\'").gsub(/\r?\n/, "").html_safe %> ")
+	</script>
 
 	<%= javascript_include_tag "application" %>
 
