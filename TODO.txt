@@ -1,6 +1,7 @@
 Intégrer l'html de Louis
 Gérer le bouton "se connecter" dynamiquement en fonction du login de l'utilisateur
 
+test partage ok
 
 Mettre des méthodes / objets en commun (ex : récupérer un group ou un match) pour ne pas dupliquer du code
 
