@@ -1,6 +1,6 @@
 <header>
 	<nav class="navbar-custom navbar-default" role="navigation">
-  	<div class="container">
+		<div class="container">
     		<!-- Brand and toggle get grouped for better mobile display -->
     		<div class="navbar-header">
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -17,7 +17,11 @@
     		  <ul class="nav navbar-nav navbar-right">
     			<li><a href="#">Informations</a></li>
     			<li><a href="#">Calendrier</a></li>
-    			<li><div><a href="/authentications/new" class="btn btn-default navbar-btn">Se connecter</a></div></li>
+    			<% if @authentication.user.nil? %>
+    				<li><div><a href="/authentications/new" class="btn btn-default navbar-btn">Se connecter</a></div></li>
+    			<% else %>
+    				<li><div><%= link_to @authentication.user.name, @authentication.user, class: "btn btn-default navbar-btn" %></div></li>
+    			<% end %>
     		  </ul>
     		</div><!-- /.navbar-collapse -->
   	  </div><!-- /.container-fluid -->

@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :check_authentication, only: [:show, :edit, :update]
+  before_action :authentication_required, only: [:show, :edit, :update]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
 

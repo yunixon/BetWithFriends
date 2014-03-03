@@ -23,7 +23,7 @@ class AuthenticationsController < ApplicationController
     user = User.find_by email_address: @authentication.email_address
     if user.nil?
       logger.debug "user #{@authentication.email_address} not found for authentication"
-      @authentication.errors.add(:base, "email address or password incorect")
+      @authentication.errors.add(:base, "L'adresse email ou le mot de passe est invalide")
       render action: 'new'
       return
     end
@@ -33,7 +33,7 @@ class AuthenticationsController < ApplicationController
     actual_password = Digest::SHA1.base64digest @authentication.password + "|+|" + @authentication.email_address
     if actual_password != user.password
       logger.debug "incorrect password to authenticate user #{@authentication.email_address}"
-      @authentication.errors.add(:base, "email address or password incorect")
+      @authentication.errors.add(:base, "L'adresse email ou le mot de passe est invalide")
       render action: 'new'
       return
     end

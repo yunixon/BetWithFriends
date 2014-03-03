@@ -4,15 +4,19 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
 
+  before_filter :get_authentication
+
 
 	protected
 
-	# check that the user is logged in
-  def check_authentication
+  def get_authentication
+    @authentication = Authentication.find_by token: cookies[:bwf_token]
+    logger.debug "authentication ==> #{@authentication.inspect}"
+  end
 
-  	# look for an authentication
-  	@authentication = Authentication.find_by token: cookies[:bwf_token]
-  	logger.debug "check authentication from #{cookies[:bwf_token].inspect}"
+
+	# check that the user is logged in
+  def authentication_required
 
   	# if not found, let's redirect to the login page
   	if @authentication.nil? || @authentication.updated_at < 30.minutes.ago

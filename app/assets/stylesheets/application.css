@@ -10,7 +10,8 @@
  *
  *= require normalize
  *= require h5bp
- *= require bootstrap
+ * diabled = require bootstrap
  * disabled = require bootstrap-theme
+ *= require import_boostrap
  *= require main
  */
