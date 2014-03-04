@@ -11,19 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140227205927) do
-
-  create_table "authentications", force: true do |t|
-    t.string   "ip"
-    t.string   "user_agent"
-    t.string   "token"
-    t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "authentications", ["user_id"], name: "index_authentications_on_user_id", unique: true
-  add_index "authentications", ["token"], name: "index_authentications_on_token", unique: true
+ActiveRecord::Schema.define(version: 20140304213956) do
 
   create_table "bets", force: true do |t|
     t.datetime "date_time"
@@ -54,15 +42,6 @@ ActiveRecord::Schema.define(version: 20140227205927) do
     t.integer  "team_a_id"
     t.integer  "team_b_id"
     t.boolean  "played"
-  end
-
-  create_table "users", force: true do |t|
-    t.string   "name"
-    t.string   "email_address"
-    t.string   "password"
-    t.integer  "crew_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "results", force: true do |t|
@@ -97,6 +76,15 @@ ActiveRecord::Schema.define(version: 20140227205927) do
 
   create_table "teams", force: true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "users", force: true do |t|
+    t.string   "name"
+    t.string   "email_address"
+    t.string   "password"
+    t.integer  "crew_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -28,26 +28,18 @@ class AuthenticationsController < ApplicationController
       return
     end
 
-
     # ...then the password
-    actual_password = Digest::SHA1.base64digest @authentication.password + "|+|" + @authentication.email_address
-    if actual_password != user.password
+    unless user.authenticate @authentication.password
       logger.debug "incorrect password to authenticate user #{@authentication.email_address}"
       @authentication.errors.add(:base, "L'adresse email ou le mot de passe est invalide")
       render action: 'new'
       return
     end
 
-    # create the authentication
-    @authentication = create_authentication user.id
-    if @authentication.nil?
-      logger.debug "error saving authentication "
-      render action: 'new'
-      return
-    else
-      redirect_to root_path
-      return
-    end
+    # store the user into the session without the password
+    user.serialize
+    session[:user] = user
+    redirect_to user
   end
 
 

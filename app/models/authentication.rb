@@ -1,12 +1,23 @@
-class Authentication < ActiveRecord::Base
+# tableless model only used for... authentication !
+class Authentication 
 
-	belongs_to :user
+	include ActiveModel::Validations
+  include ActiveModel::Conversion
+  extend ActiveModel::Naming
+
 	attr_accessor :email_address, :password
 
-	default_scope {includes(:user).references(:user)}
-
-	# validates the form
 	validates :email_address, presence: true
 	validates :password, presence: true
+
+  def initialize(attributes = {})
+    attributes.each do |name, value|
+      send("#{name}=", value)
+    end
+  end
+  
+  def persisted?
+    false
+  end
 
 end

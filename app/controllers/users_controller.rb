@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
-  before_action :authentication_required, only: [:show, :edit, :update]
+  before_action :authenticated_user_required, only: [:show, :edit, :update]
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :check_owner, only: [:show, :edit, :update]
 
 
   # GET /users
@@ -12,10 +13,6 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    if @user.id != @authentication.user_id
-      render :file => "public/403.html", :status => :forbidden, :layout => false
-      return
-    end
   end
 
   # GET /users/new
@@ -25,6 +22,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+
   end
 
   # POST /users
@@ -34,11 +32,10 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @user }
+        session[:user] = @user.serialize
+        redirect_to @user
       else
-        format.html { render action: 'new' }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        render action: 'new'
       end
     end
   end
@@ -78,4 +75,13 @@ class UsersController < ApplicationController
     def user_params
       params.require(:user).permit(:name, :email_address, :password, :password_confirmation, :crew_id)
     end
+
+    # check that the accessed user is the authenticated one
+    def check_owner
+      if @user.id != @authenticated_user.id
+        render :file => "public/403.html", :status => :forbidden, :layout => false
+        return
+      end
+    end
+
 end

@@ -17,10 +17,10 @@
     		  <ul class="nav navbar-nav navbar-right">
     			<li><a href="#">Informations</a></li>
     			<li><a href="#">Calendrier</a></li>
-    			<% if @authentication.user.nil? %>
+    			<% if @authenticated_user.nil? %>
     				<li><div><a href="/authentications/new" class="btn btn-default navbar-btn">Se connecter</a></div></li>
     			<% else %>
-    				<li><div><%= link_to @authentication.user.name, @authentication.user, class: "btn btn-default navbar-btn" %></div></li>
+    				<li><div><%= link_to @authenticated_user.name, @authenticated_user, class: "btn btn-default navbar-btn" %> </div></li>
     			<% end %>
     		  </ul>
     		</div><!-- /.navbar-collapse -->
