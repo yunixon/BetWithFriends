@@ -9,7 +9,7 @@
 		<td>vs</td>
 		<td><%= @match.team_b.name %></td>
 	</tr>
-	<% if @match.result.played %>
+	<% if @match.played %>
 	<tr>
 		<td><%= @match.result.score_team_a %></td>
 		<td></td>
@@ -21,7 +21,7 @@
 <br/>
 
 <%= link_to 'Edit', edit_stage_group_match_path(params[:stage_id], @match.group.id, @match.id) %> |
-<% if @match.result.played %>
+<% if @match.played %>
 <%= link_to 'Result', result_stage_group_match_path(params[:stage_id], @match.group.id, @match.id) %> |
 <% end %>
 <%= link_to 'Edit result', result_edit_stage_group_match_path(params[:stage_id], @match.group.id, @match.id) %> |

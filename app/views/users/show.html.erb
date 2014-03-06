@@ -1,5 +1,6 @@
 <p id="notice"><%= notice %></p>
 
+<h2> personnal information</h2>
 <p>
   <strong>Name:</strong>
   <%= @user.name %>
@@ -20,3 +21,12 @@
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Bets', user_bets_path(@user) %> |
 <%= link_to 'Back', users_path %>
+
+<h2>Calendrier</h2>
+<% @matches.each do |match| %>
+	<p>
+			<%= link_to stage_group_match_path(match.group.stage.id, match.group.id, match.id) do %>
+				<%= match.group.name %> - <%= match.team_a.name %> vs <%= match.team_b.name %> @ <%= match.date %>
+			<% end %>
+	</p>
+<% end %>

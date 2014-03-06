@@ -12,7 +12,7 @@ class Match < ActiveRecord::Base
 	has_one :result, :as => :resultable, :autosave => false
 	has_many :bet, inverse_of: :match
 
-	default_scope {includes(:team_a).references(:team_a).includes(:team_b).references(:team_b).includes(:group).references(:group).includes(:result).references(:result)}
+	default_scope {includes(:team_a).references(:team_a).includes(:team_b).references(:team_b).includes(group: [:stage]).references(:group).includes(:result).references(:result)}
 
 	# validation
 	validates :date, presence: true
