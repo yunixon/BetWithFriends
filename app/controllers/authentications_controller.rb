@@ -37,8 +37,8 @@ class AuthenticationsController < ApplicationController
     end
 
     # store the user into the session without the password
-    user.serialize
-    session[:user] = user
+    session[:user] = user.serialize
+    logger.debug "user in the session --> #{session[:user].inspect}"
     redirect_to user
   end
 

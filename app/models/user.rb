@@ -47,5 +47,6 @@ class User < ActiveRecord::Base
 	# serialize the user so that only important data are kept
 	def serialize
 		self.password = ""
+		return self
 	end
 end

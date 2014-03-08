@@ -3,7 +3,6 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   before_action :check_owner, only: [:show, :edit, :update]
 
-
   # GET /users
   # GET /users.json
   def index
@@ -30,14 +29,11 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(user_params)
-
-    respond_to do |format|
-      if @user.save
-        session[:user] = @user.serialize
-        redirect_to @user
-      else
-        render action: 'new'
-      end
+    if @user.save
+      session[:user] = @user.serialize
+      redirect_to @user
+    else
+      render action: 'new'
     end
   end
 
