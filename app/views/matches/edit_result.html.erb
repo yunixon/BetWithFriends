@@ -1,6 +1,6 @@
 <h1>Edit result for match #<%= @match.id %></h1>
 
-<%= form_for(@match.result, :url => result_stage_group_match_path(params[:stage_id], @match.group_id, @match.id)) do |f| %>
+<%= form_for(@match.result, method: :put, :url => result_stage_group_match_path(params[:stage_id], @match.group_id, @match.id)) do |f| %>
 
 <% if @match.result.errors.any? %>
   <div id="error_explanation">

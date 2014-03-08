@@ -15,7 +15,6 @@ class MatchesController < ApplicationController
   end
 
   def edit
-    @match.result = Result.new
   end
 
   # POST /matches
@@ -57,24 +56,36 @@ class MatchesController < ApplicationController
   def result
   end
 
+  # GET matches/1/result/edit
+  def edit_result
+    if @match.result.nil?
+      @match.build_result
+    end
+  end
+
   # PUT/PATCH matches/1/result
   def update_result
-    if @match.result.update(result_params)
+
+    # should the result be created
+    if @match.result.nil?
+      @match.build_result(result_params)
+      result_updated = @match.result.save
+    # or updated
+    else
+      result_updated = @match.result.update(result_params)
+    end
+
+    if result_updated
       redirect_to result_stage_group_match_path(params[:stage_id], params[:group_id], params[:id]), notice: 'Result was successfully created.'
     else
       render action: 'edit_result'
     end
   end
 
-  # GET matches/1/result/edit
-  def edit_result
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_match
       @match = Match.where("group_id = ? and matches.id = ?", params[:group_id], params[:id]).take!
-      logger.debug "et voila le match #{@match.inspect}"
     end
     def set_result
       #@result = Result.where("resultable_type = ? and resultable_id = ?", Result::TYPE_MATCH, params[:id]).take
