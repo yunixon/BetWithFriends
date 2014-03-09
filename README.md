@@ -7,4 +7,5 @@ Set up sports events from the world cup football to your local sport championshi
 
 
 Language : Rails
-Developper Level : Beginner, so please, be nice :-)
+
+Developper Level : Beginner, so please, be kind :-)
