@@ -1,6 +1,10 @@
 <h1>Bet for user <strong>XXXXXX</strong></h1>
 
-<div class="field">match : <%= @bet.match.to_string %></div>
+<div class="field">match : 
+<%= link_to stage_group_match_path(@bet.match.group.stage_id, @bet.match.group.id, @bet.match.id) do %>
+	<%= @bet.match.to_string %>
+<% end %>
+</div>
 <div class="field">score team a : <%= @bet.result.score_team_a %></div>
 <div class="field">score team b : <%= @bet.result.score_team_b %></div>
 <div class="field">when : <%= @bet.updated_at %></div>

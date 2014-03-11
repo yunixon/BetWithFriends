@@ -1,26 +1,23 @@
 <p id="notice"><%= notice %></p>
 
-<h2> personnal information</h2>
+<h1>Mon espace</h1>
+
+<h2>Mes informations</h2>
 <p>
   <strong>Name:</strong>
   <%= @user.name %>
 </p>
-
 <p>
   <strong>email_address:</strong>
   <%= @user.email_address %>
 </p>
-
 <p>
   <strong>Crew:</strong>
   <% if @user.crew %>
   <%= link_to @user.crew.name, @user.crew %>
   <% end %>
 </p>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Bets', user_bets_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<%= link_to 'Edit', edit_user_path(@user) %>
 
 <h2>Calendrier</h2>
 <% @matches.each do |match| %>
@@ -30,3 +27,19 @@
 			<% end %>
 	</p>
 <% end %>
+
+<h2>Mon classement</h2>
+<p>Score : 57 points</p>
+<p>23 pronostiques effectués</p>
+<p>Classement : 23ème / 156 participants</p>
+<p><a href="#">Accéder au classement</a></p>
+
+
+<h2>Mes pronostiques</h2>
+<%= link_to 'Bets', user_bets_path(@user) %>
+
+<hr/>
+
+
+
+<%= link_to 'Back', users_path %>
