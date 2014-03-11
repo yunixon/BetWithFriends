@@ -1,6 +1,7 @@
 <h1>Match <%= @match.id %></h1>
 
 <p>date : <%= @match.date %></p>
+<p>stage : <%= @match.group.stage.name %></p>
 <p>group : <%= @match.group.name %></p>
 
 <table>
@@ -20,9 +21,4 @@
 
 <br/>
 
-<%= link_to 'Edit', edit_stage_group_match_path(params[:stage_id], @match.group.id, @match.id) %> |
-<% if @match.result.nil? == false && @match.result.played == true %>
-<%= link_to 'Result', result_stage_group_match_path(params[:stage_id], @match.group.id, @match.id) %> |
-<% end %>
-<%= link_to 'Edit result', result_edit_stage_group_match_path(params[:stage_id], @match.group.id, @match.id) %> |
-<%= link_to 'Back', stage_group_matches_path(params[:stage_id], @match.group.id) %>
+<%= link_to 'Back', root_path %>

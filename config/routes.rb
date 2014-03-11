@@ -2,20 +2,31 @@ BetWithFriends::Application.routes.draw do
 
   root "home#index"
 
+  scope "/admin" do
+
+    get 'home', to: 'administration#home', as: 'admin_home'
+
+    # matches result
+    get 'matches/:id/result/edit', to: 'administration#edit_match_result', as: 'admin_edit_match_result'
+    put 'matches/:id/result', to: 'administration#update_match_result', as: 'admin_update_match_result'
+
+    # standings 
+    put 'stages/:stage_id/groups/:group_id/standings' => 'administration#update_standings'
+
+    # rankings 
+    put 'ranking/edit' => 'administration#edit_ranking'
+
+  end
+
+  # display a single match
+  get 'matches/:id', to: 'matches#show', as: 'match'
+
   resources :stages do
     resources :groups do
-      resources :matches do
-        member do
-          get  'result'
-          get  'result/edit' => 'matches#edit_result'
-          put 'result' => 'matches#update_result'
-          patch 'result' => 'matches#update_result'
-        end
-      end
+      get 'matches'
       get 'teams'
       get 'standings' => 'standings#show'
       put 'standings' => 'standings#update'
-      patch 'standings' => 'standings#update'
     end
   end
 
@@ -30,7 +41,7 @@ BetWithFriends::Application.routes.draw do
   end
 
   # users
-  resources :users do
+  resources :users, only: [:show, :new, :create, :edit, :update, :destroy] do
     resources :bets
   end
 

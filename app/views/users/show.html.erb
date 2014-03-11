@@ -22,8 +22,8 @@
 <h2>Calendrier</h2>
 <% @matches.each do |match| %>
 	<p>
-			<%= link_to stage_group_match_path(match.group.stage.id, match.group.id, match.id) do %>
-				<%= match.group.name %> - <%= match.team_a.name %> vs <%= match.team_b.name %> @ <%= match.date %>
+			<%= link_to match_path(match.id) do %>
+				<%= match.to_string %>
 			<% end %>
 	</p>
 <% end %>
@@ -42,4 +42,4 @@
 
 
 
-<%= link_to 'Back', users_path %>
+<%= link_to 'Back', root_path %>

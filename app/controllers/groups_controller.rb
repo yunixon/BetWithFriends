@@ -1,5 +1,5 @@
 class GroupsController < ApplicationController
-  before_action :set_group, only: [:show, :edit, :update, :destroy, :teams, :standings]
+  before_action :set_group, only: [:show, :edit, :update, :destroy, :teams, :matches, :standings]
 
   # GET /stages/{stage_id}/groups
   # GET /stages/{stage_id}/groups.json
@@ -62,6 +62,11 @@ class GroupsController < ApplicationController
       format.html { redirect_to stage_path(params[:stage_id]) }
       format.json { head :no_content }
     end
+  end
+
+  # GET /stages/{stage_id}/groups/1/matches
+  def matches
+     @matches = Match.where("group_id = ?", @group.id)
   end
 
   # GET /stages/{stage_id}/groups/1/teams

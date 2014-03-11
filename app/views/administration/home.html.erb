@@ -1,0 +1,22 @@
+<h1>Root me !</h1>
+
+<h2>Update match result</h2>
+<%= form_tag("/admin/matches/1/result/edit", method: "get", id: "update_match_result_form") do %>
+	<%= select_tag "match", options_from_collection_for_select(Match.order(group_id: :asc), :id, :to_string), :onchange => "update_form_url();" %>
+	<%= submit_tag "Mettre à jour le résultat" %>
+<% end %>
+
+
+
+<h2>Update groups standing</h2>
+<h2>Update user rankings</h2>
+
+
+<script>
+	/** 
+	 * update the form url with the selected match
+	 */
+	function update_form_url() {
+		$('#update_match_result_form').attr("action", "/admin/matches/"+ $("#match").val() + "/result/edit");
+	}
+</script>

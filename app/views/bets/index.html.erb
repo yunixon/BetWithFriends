@@ -14,7 +14,7 @@
   <tbody>
     <% @user.bet.each do |bet| %>
       <tr>
-        <td><%= link_to bet.match_id, stage_group_match_path(bet.match.group.stage_id, bet.match.group_id, bet.match_id) %></td>
+        <td><%= link_to bet.match_id, match_path(bet.match_id) %></td>
         <td><%= bet.result.score_team_a %></td>
         <td><%= bet.result.score_team_b %></td>
         <td><%= bet.updated_at %></td>
